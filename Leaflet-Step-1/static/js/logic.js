@@ -27,7 +27,7 @@ var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_we
 d3.json(queryUrl).then(function (data) {
 
 
-
+//Add circle markers for each earthquake recorded, based on the latitude and longitude of the earthquake site
   var geojsonMarkerOptions = {
     radius: 8,
     fillColor: "#ff7800",
@@ -35,12 +35,17 @@ d3.json(queryUrl).then(function (data) {
     weight: 1,
     opacity: 1,
     fillOpacity: 0.8
-};
+  };
 
-L.geoJSON(data, {
+  L.geoJSON(data, {
     pointToLayer: function (feature, latlng) {
-        return L.circleMarker(latlng, geojsonMarkerOptions);
-    }
-}).addTo(myMap);
+      return L.circleMarker(latlng, geojsonMarkerOptions);
+    },
 
-});
+    // Binding a pop-up to each layer with place and time the earthquake occurred
+    onEachFeature: function (feature, layer) {
+      layer.bindPopup("Site of earthquake: " + feature.properties.place + "<br>Time occurred: <br>" +
+        + feature.properties.time);
+    }
+  }).addTo(myMap);
+  });
