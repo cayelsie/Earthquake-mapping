@@ -34,7 +34,7 @@ d3.json(queryUrl).then(function (data) {
     pointToLayer: function (feature, latlng) {
 
         var geojsonMarkerOptions = {
-        radius: (feature.properties.mag) * 8,
+        radius: (feature.properties.mag) * 5,
         fillColor: "#ff7800",
         color: "#000",
         weight: 1,
@@ -50,7 +50,7 @@ d3.json(queryUrl).then(function (data) {
     onEachFeature: function (feature, layer) {
 
       layer.bindPopup("Site of earthquake: " + feature.properties.place + "<br>Time occurred: " +
-        + new Date(feature.properties.time);
+        + new Date(feature.properties.time) +"<br>Magnitude: " + feature.properties.mag);
     }
   }).addTo(myMap);
   });
