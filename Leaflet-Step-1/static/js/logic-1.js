@@ -28,20 +28,17 @@ d3.json(queryUrl).then(function (data) {
 
 
 //Add circle markers for each earthquake recorded, based on the latitude and longitude of the earthquake site
-
+  var geojsonMarkerOptions = {
+    radius: 8,
+    fillColor: "#ff7800",
+    color: "#000",
+    weight: 1,
+    opacity: 1,
+    fillOpacity: 0.8
+  };
 
   L.geoJSON(data, {
     pointToLayer: function (feature, latlng) {
-
-        var geojsonMarkerOptions = {
-        radius: (feature.properties.mag) * 8,
-        fillColor: "#ff7800",
-        color: "#000",
-        weight: 1,
-        opacity: 1,
-        fillOpacity: 0.8
-          };
-
       
       return L.circleMarker(latlng, geojsonMarkerOptions);
     },
@@ -50,7 +47,7 @@ d3.json(queryUrl).then(function (data) {
     onEachFeature: function (feature, layer) {
 
       layer.bindPopup("Site of earthquake: " + feature.properties.place + "<br>Time occurred: " +
-        + new Date(feature.properties.time);
+        + new Date(feature.properties.time));
     }
   }).addTo(myMap);
   });
