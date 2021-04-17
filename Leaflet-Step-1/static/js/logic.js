@@ -28,23 +28,23 @@ var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_we
 // Function that will determine the color of the marker based on depth of earth
 function chooseColor(depth) {
 
-  if (depth < 10 & depth >= -10) {
+  if (depth >= -10 & depth < 10) {
       return "green";
   } 
-  else if (30 < depth & depth <= 10) {
+  else if (depth >= 10 & depth < 30) {
       return "pink";
   } 
   
-  else if (50 < depth & depth <= 30) {
-      return "#12E510";
+  else if (depth >= 30 & depth < 50) {
+      return "red";
   } 
   
-  else if (70 < depth & depth <= 50) {
-      return "#DCEB0C";
+  else if (depth >= 50 & depth < 70) {
+      return "yellow";
   } 
   
-  else if (90 < depth & depth <= 70) {
-      return "#ff7800"
+  else if (depth >= 70 & depth < 90) {
+      return "blue"
   } 
   
   else {
