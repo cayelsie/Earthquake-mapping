@@ -20,12 +20,12 @@ html {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
-.legend ul {
-  padding: 0;
-  margin: 0;
-  clear: both;
-  list-style-type: none;
-}
+/* .legend ul { */
+  /* padding: 0; */
+  /* margin: 0; */
+  /* clear: both; */
+  /* list-style-type: none; */
+/* } */
 
 .legend li {
   display: inline-block;

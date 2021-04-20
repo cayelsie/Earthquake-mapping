@@ -95,35 +95,15 @@ d3.json(queryUrl).then(function (data) {
     var legend = L.control({ position: "bottomright" });
     legend.onAdd = function() {
       var div = L.DomUtil.create("div", "info legend");
-      labels = ["-10-10", "10-30", "30-50", "50-70", "70-90", "90+"];
+      labels = [" -10-10", " 10-30", " 30-50", " 50-70", " 70-90", " 90+"];
       colors= ["#00ff00", "#ffff66", "#ffbf4c", "#ff8c38", "#ff5924", "#ff0000"];
-
+      div.innerHTML = "<h3>Depth of Earthquake</h3>"
       for (var i = 0; i < labels.length; i++) {
-        div.innerHTML += '<li style = "background-color: ' + colors[i] +'"></li>' + labels[i] + "<br>";
+        div.innerHTML += '<li style = "background-color:' + colors[i] +'"></li>' + labels[i] + "<br>";
       }
-
-
       return div;
     };
-     
-    //   var labels = [];
-  
-    //   // Add min & max
-    //   var legendInfo = "<h1>Median Income</h1>" +
-    //     "<div class=\"labels\">" +
-    //       "<div class=\"min\">" + limits[0] + "</div>" +
-    //       "<div class=\"max\">" + limits[limits.length - 1] + "</div>" +
-    //     "</div>";
-  
-    //   div.innerHTML = legendInfo;
-  
-    //   limits.forEach(function(limit, index) {
-    //     labels.push("<li style=\"background-color: " + colors[index] + "\"></li>");
-    //   });
-  
-    //   div.innerHTML += "<ul>" + labels.join("") + "</ul>";
-    //   return div;
-    // };
+
 
       // Adding legend to the map
   legend.addTo(myMap);
