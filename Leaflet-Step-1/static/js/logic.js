@@ -95,10 +95,15 @@ d3.json(queryUrl).then(function (data) {
     var legend = L.control({ position: "bottomright" });
     legend.onAdd = function() {
       var div = L.DomUtil.create("div", "info legend");
+      labels = ["-10-10", "10-30", "30-50", "50-70", "70-90", "90+"];
+      colors= ["#00ff00", "#ffff66", "#ffbf4c", "#ff8c38", "#ff5924", "#ff0000"];
+
+      for (var i = 0; i < labels.length; i++) {
+        div.innerHTML += '<i style = "background: ' + colors[i] +'"></i>' + labels[i] + "<br>";
+      }
       return div;
     };
-      var limits = ["-10-10", "10-30", "30-50", "50-70", "70-90", "90+"];
-      var colors = ["#00ff00", "#ffff66", "#ffbf4c", "#ff8c38", "#ff5924", "#ff0000"];
+     
     //   var labels = [];
   
     //   // Add min & max
