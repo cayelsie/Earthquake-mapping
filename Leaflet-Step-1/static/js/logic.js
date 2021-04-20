@@ -99,8 +99,10 @@ d3.json(queryUrl).then(function (data) {
       colors= ["#00ff00", "#ffff66", "#ffbf4c", "#ff8c38", "#ff5924", "#ff0000"];
 
       for (var i = 0; i < labels.length; i++) {
-        div.innerHTML += '<i style = "background: ' + colors[i] +'"></i>' + labels[i] + "<br>";
+        div.innerHTML += '<li style = "background-color: ' + colors[i] +'"></li>' + labels[i] + "<br>";
       }
+
+
       return div;
     };
      
