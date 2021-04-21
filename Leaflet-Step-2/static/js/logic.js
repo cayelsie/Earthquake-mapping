@@ -9,6 +9,12 @@ var myMap = L.map("mapid", {
   zoom: 5,
 });
 
+// Create layer group for earthquakes
+var earthquakes = L.layerGroup();
+
+//Create layer group for plates
+var plates = L.layerGroup();
+
 // Adding a tile layer (the background map image) to our map
 // We use the addTo method to add objects to our map
 L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
@@ -20,8 +26,23 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
   accessToken: API_KEY
 }).addTo(myMap);
 
-//Link to get geojson data
-var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
+//variable to hold baselayers - one will be able to be chosen at a time
+var baseMaps = {
+  Satellite: satellite,
+  Grayscale: grayscale,
+  Outdoors: outdoors
+};
+
+//Variable to hold overlay layers that may be toggled on or off
+var overlayMaps = {
+  "Techtonic Plates": plates,
+  Earthquakes: earthquakes
+
+//Link to get earhtquake geojson data
+var earthquakeUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
+
+//Link to get plate geojson data
+var plateUrl = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json";
 
 
 
@@ -53,8 +74,8 @@ function chooseColor(depth) {
 }
 
 
-// // Perform a GET request to the query URL
-d3.json(queryUrl).then(function (data) {
+// // Perform a GET request to the earthquake URL
+d3.json(earthquakeUrl).then(function (data) {
 
 
 //Add circle markers for each earthquake recorded, based on the latitude and longitude of the earthquake site
@@ -90,6 +111,15 @@ d3.json(queryUrl).then(function (data) {
         + new Date(feature.properties.time) +"<br>Magnitude: " + feature.properties.mag);
     }
   }).addTo(myMap);
+
+  // // Perform a GET request to the plates URL
+  d3.json(plateUrl).then(function (data) {
+    L.geoJSON (platedata, {
+      color: "#ff8000",
+      weight: 3
+    })
+
+
 
     // Set up the legend
     var legend = L.control({ position: "bottomright" });
