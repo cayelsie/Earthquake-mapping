@@ -35,7 +35,7 @@ var grayscale = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}
   tileSize: 512,
   maxZoom: 18,
   zoomOffset: -1,
-  id: "mapbox/dark-v10",
+  id: "mapbox/light-v10",
   accessToken: API_KEY
 });
 
@@ -47,7 +47,7 @@ var myMap = L.map("mapid", {
   center: [
     37.09, -95.71
   ],
-  zoom: 5,
+  zoom: 4,
   layers: [satellite, outdoors]
 });
 
@@ -147,7 +147,7 @@ d3.json(earthquakeUrl).then(function (data) {
   d3.json(plateUrl).then(function (platedata) {
     L.geoJSON(platedata, {
       color: "#ff8000",
-      weight: 3
+      weight: 2
     }).addTo(plates);
     plates.addTo(myMap);
   });
